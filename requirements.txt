@@ -1,0 +1,7 @@
+aiogram
+asyncpg
+openai
+python-dotenv
+pydantic
+ujson
+gigachat

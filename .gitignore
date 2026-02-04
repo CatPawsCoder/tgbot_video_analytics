@@ -1,0 +1,47 @@
+# --- Secrets / env ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.cer
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.dist/
+.build/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.log
+
+# --- Virtualenv ---
+.venv/
+venv/
+ENV/
+env/
+
+# --- OS / Editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# --- Data / local files ---
+data/
+*.json
+*.db
+*.sqlite3
+
+# --- Docker ---
+*.env.docker
+docker-compose.override.yml

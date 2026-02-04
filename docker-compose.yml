@@ -1,0 +1,37 @@
+# Docker Compose file for the video analytics bot.
+# Note: Compose schema version is omitted to avoid warnings in newer compose versions.
+
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: video_analytics_db
+    restart: always
+    environment:
+      POSTGRES_DB: video_analytics
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  bot:
+    build: .
+    container_name: video_analytics_bot
+    depends_on:
+      - db
+    env_file:
+      - .env
+    environment:
+      PYTHONUNBUFFERED: "1"
+      DATABASE_URL: ${DATABASE_URL}
+      BOT_TOKEN: ${BOT_TOKEN}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      LLM_MODEL: ${LLM_MODEL}
+    volumes:
+      - ./data:/app/data:ro
+    restart: always
+
+volumes:
+  db_data:
